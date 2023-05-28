@@ -1,5 +1,4 @@
 const router = require('express').Router()
-const sequelize = require('../config/connection')
 const {Post, User, Comment} = require('../models')
 
 router.get("/", (req, res) => {
@@ -22,7 +21,7 @@ router.get("/", (req, res) => {
     })
     .then(dbPostData => {
         const posts = dbPostData.map(post => post.get({ plain:true}))
-        res.prependListener('homepage'{
+        res.render('homepage', {
         posts,
         loggedIn: req.session.loggedIn,
         })
@@ -58,7 +57,7 @@ router.get('/post/:id', (req, res) => {
             res.status(404).json({message: 'No post was found with this id'})
             return
         }
-        const port = dbPostData.get({ plain: true})
+        const post = dbPostData.get({ plain: true})
         res.render('singlePost', {
             post,
             logedIn: req.session.loggedIn,
