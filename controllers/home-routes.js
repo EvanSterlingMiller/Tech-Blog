@@ -3,11 +3,22 @@ const {Post, User, Comment} = require('../models')
 
 router.get("/", (req, res) => {
     Post.findAll({
-        attributes: ['id', 'title', 'created_at', 'post_content'],
+        attributes: [
+            'id', 
+            'title', 
+            'created_at', 
+            'post_content'
+        ],
         include: [
             {
                 model: Comment,
-                attributes: ['id', 'comment_text', 'post_id', 'user_id', 'created_at'],
+                attributes: [
+                    'id', 
+                    'comment_text', 
+                    'post_id', 
+                    'user_id', 
+                    'created_at'
+                ],
                 include: {
                     model: User,
                     attributes: ['username'],
@@ -36,11 +47,22 @@ router.get('/post/:id', (req, res) => {
         where: {
             id: req.params.id,
         },
-        attributes: ['id', 'title', 'created_at', 'post_content'],
+        attributes: [
+            'id', 
+            'title', 
+            'created_at', 
+            'post_content'
+        ],
         include: [
             {
                 model:Comment,
-                attributes: ['id', 'comment_text', 'post_id', 'user_id', 'created_at'],
+                attributes: [
+                    'id', 
+                    'comment_text', 
+                    'post_id', 
+                    'user_id', 
+                    'created_at'
+                ],
                 include: {
                     model:User,
                     attributes: ['username'],

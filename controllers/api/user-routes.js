@@ -19,11 +19,20 @@ router.get("/:id", (req, res) => {
         include: [
             {
                 model: Post,
-                attributes: ["id", "title", "post_content", "created_at"],
+                attributes: [
+                    "id", 
+                    "title", 
+                    "post_content", 
+                    "created_at"
+                ],
             },
             {
                 model: Comment,
-                attributes: ["id", "comment_text", "created_at"],
+                attributes: [
+                    "id", 
+                    "comment_text", 
+                    "created_at"
+                ],
                 include: {
                 model: Post,
                 attributes: ["title"],
@@ -36,10 +45,10 @@ router.get("/:id", (req, res) => {
             res.status(404).json({ message: "No user was found with this id" })
             return;
         }
-        res.json(dbUserData);
+        res.json(dbUserData)
     })
     .catch((err) => {
-        console.log(err);
+        console.log(err)
         res.status(500).json(err)
     })
 })
@@ -79,9 +88,9 @@ router.post("/login", (req, res) => {
         }
 
         req.session.save(() => {
-            req.session.user_id = dbUserData.id;
-            req.session.username = dbUserData.username;
-            req.session.loggedIn = true;
+            req.session.user_id = dbUserData.id
+            req.session.username = dbUserData.username
+            req.session.loggedIn = true
 
             res.json({ user: dbUserData, message: "You are now logged in!" })
         })
@@ -100,7 +109,7 @@ router.post("/logout", withAuth, (req, res) => {
 
 router.put("/:id", withAuth, (req, res) => {
     User.update(req.body, {
-        individualHooks: true,
+        individualHooks:true,
         where: {
             id: req.params.id,
         },
@@ -115,8 +124,8 @@ router.put("/:id", withAuth, (req, res) => {
     .catch((err) => {
         console.log(err)
         res.status(500).json(err)
-    });
-});
+    })
+})
 
 router.delete("/:id", withAuth, (req, res) => {
     User.destroy({
@@ -127,7 +136,7 @@ router.delete("/:id", withAuth, (req, res) => {
     .then((dbUserData) => {
         if (!dbUserData) {
             res.status(404).json({ message: "No user was found with this id" })
-            return;
+            return
         }
         res.json(dbUserData)
     })
@@ -137,4 +146,4 @@ router.delete("/:id", withAuth, (req, res) => {
     })
 })
 
-module.exports = router;
+module.exports = router
