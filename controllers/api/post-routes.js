@@ -1,6 +1,8 @@
 const router = require('express').Router()
 const { Post, User, Comment } = require('../../models')
 const withAuth = require('../../utils/auth')
+const Filter = require('bad-words')
+filter = new Filter()
 
 router.get('/', (req, res) => {
     Post.findAll({
@@ -85,8 +87,8 @@ router.get('/:id', (req, res) => {
 
 router.post('/', withAuth, (req, res) => {
     Post.create({
-        title: req.body.title,
-        post_content: req.body.post_content,
+        title: filter.clean(req.body.title),
+        post_content: filter.clean(req.body.post_content),
         user_id: req.session.user_id
     })
     .then(dbPostData => res.json(dbPostData))
