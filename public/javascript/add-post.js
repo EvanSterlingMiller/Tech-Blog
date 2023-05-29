@@ -1,5 +1,5 @@
 async function newFormHandler(event) {
-    event.preventDefault();
+    event.preventDefault()
     const title = document.querySelector('input[name="post-title"]').value;
     const post_content = document.querySelector('textarea[name="post-content"]').value;
     console.log(title)
@@ -15,10 +15,10 @@ async function newFormHandler(event) {
     });
 
     if (response.ok) {
-        document.location.replace('/dashboard');
+        document.location.replace('/dashboard')
     } else {
-        alert(response.statusText);
+        alert(response.statusText)
     }
 }
 
-document.querySelector('.post-new-form').addEventListener('submit', newFormHandler);
+document.querySelector('.post-new-form').addEventListener('submit', newFormHandler)
