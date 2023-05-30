@@ -39,11 +39,11 @@ router.get("/", (req, res) => {
     })
     .catch(err => {
         console.log(err)
-        res.statusCode(500).json(err)
+        res.statusC(500).json(err)
     })
 })
 router.get('/post/:id', (req, res) => {
-    post.findOne({
+    Post.findOne({
         where: {
             id: req.params.id,
         },
@@ -55,7 +55,7 @@ router.get('/post/:id', (req, res) => {
         ],
         include: [
             {
-                model:Comment,
+                model: Comment,
                 attributes: [
                     'id', 
                     'comment_text', 
@@ -64,7 +64,7 @@ router.get('/post/:id', (req, res) => {
                     'created_at'
                 ],
                 include: {
-                    model:User,
+                    model: User,
                     attributes: ['username'],
                 },
             },
@@ -75,21 +75,22 @@ router.get('/post/:id', (req, res) => {
         ],
     })
     .then(dbPostData => {
-        if (dbPostData) {
-            res.status(404).json({message: 'No post was found with this id'})
-            return
+        if (!dbPostData) {
+            res.status(404).json({ message: 'No post was found with this id' });
+            return;
         }
-        const post = dbPostData.get({ plain: true})
-        res.render('singlePost', {
+        const post = dbPostData.get({ plain: true });
+        res.render('single-post', {
             post,
-            logedIn: req.session.loggedIn,
-        })
+            loggedIn: req.session.loggedIn,
+        });
     })
     .catch(err => {
-        console.log(err)
-        res.statusCode(500).json(err)
-    })
-})
+        console.log(err);
+        res.status(500).json(err);
+    });
+});
+
 
 router.get('/login', (req, res) => {
     if (req.session.loggedIn) {
