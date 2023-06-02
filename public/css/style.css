@@ -1,5 +1,6 @@
 * {
     box-sizing: border-box;
+    background-color: #000;
 }
 
 body,
@@ -157,13 +158,44 @@ main {
     margin-bottom: 0.5%;
     opacity: 0.6;
 }
-
+.post-new-form {
+    text-align: center;
+}
 .post-new-form input {
-    width: 300px;
+    width: 300px; 
 }
 
+textarea{
+    background-color: #fff;
+}
 .post-edit-form {
     margin-bottom: 5%;
+}
+
+.login-form {
+    text-align: center;
+}
+.signup-form {
+    text-align: center;
+}
+
+
+div input {
+    background-color: #fff;
+    color: black;
+}
+
+div label {
+    color:rgb(214, 212, 212);
+}
+
+section h2 {
+    color:rgb(214, 212, 212);
+    text-align: center;
+}
+section ol {
+    color:rgb(214, 212, 212);
+    text-align: center;
 }
 
 footer {
