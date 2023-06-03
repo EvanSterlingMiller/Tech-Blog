@@ -49,7 +49,7 @@ router.get('/edit/:id', withAuth, (req,res) => {
         attributes: [
             'id', 
             'title', 
-            'creates_at', 
+            'created_at', 
             'post_content'
         ],
         include: [
