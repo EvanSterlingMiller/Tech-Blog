@@ -1,11 +1,11 @@
-const Sequelize = require("sequelize");
+const Sequelize = require("sequelize"); // ORM library for SQL
 require("dotenv").config();
 
 let sequelize;
 
-if (process.env.JAWSDB_URL) {
+if (process.env.JAWSDB_URL) { // checks to see if JawsDB is available
     sequelize = new Sequelize(process.env.JAWSDB_URL);
-} else {
+} else { // if not it will use the information in the .env to set up the SQL database
     sequelize = new Sequelize(
         process.env.DB_NAME,
         process.env.DB_USER,
@@ -19,10 +19,10 @@ if (process.env.JAWSDB_URL) {
 
 sequelize
     .authenticate()
-    .then(() => {
+    .then(() => { // lets toe user know if it worked
         console.log("Connection has been established successfully.");
     })
-    .catch((err) => {
+    .catch((err) => { // lets the user know that it did not work
     console.error("Unable to connect to the database:", err);
 });
 
