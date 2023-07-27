@@ -1,15 +1,15 @@
 const router = require('express').Router()
 const {Post, User, Comment} = require('../models') // gabs the models from post, user, and comment
 
-router.get("/", (req, res) => {
-    Post.findAll({
+router.get("/", (req, res) => { // get route for root
+    Post.findAll({ //finds all and return the attributes
         attributes: [
             'id', 
             'title', 
             'created_at', 
             'post_content'
         ],
-        include: [
+        include: [ // also includes the comments model with its attributes
             {
                 model: Comment,
                 attributes: [
