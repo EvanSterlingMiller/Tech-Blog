@@ -1,8 +1,8 @@
-const router = require('express').Router()
+const router = require('express').Router() //creates an instanceof Express router
 const {Post, User, Comment} = require('../models') // gabs the models from post, user, and comment
 
 router.get("/", (req, res) => { // get route for root
-    Post.findAll({ //finds all and return the attributes
+    Post.findAll({ // uses the Post model to find all posts in the database and return the specific attributes below
         attributes: [
             'id', 
             'title', 
