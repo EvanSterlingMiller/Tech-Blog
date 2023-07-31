@@ -1,6 +1,6 @@
 const router = require('express').Router()
-const {Post, User, Comment} = require('../models')
-const withAuth = require('../utils/auth')
+const {Post, User, Comment} = require('../models') // requires the models
+const withAuth = require('../utils/auth') // uses the withAuth util that requires the user to be legged in
 
 router.get('/', withAuth, (req, res) => {
     Post.findAll({
